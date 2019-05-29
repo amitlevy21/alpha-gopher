@@ -5,13 +5,15 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/amitlevy21/alpha-gopher/api"
+
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
 )
 
 func setupRouter() *gin.Engine {
 	r := gin.Default()
-	r.GET("/ping", getAllUsers)
+	r.GET("/ping", api.GetAllUsers)
 	return r
 }
 

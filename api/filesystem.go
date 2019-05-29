@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func getAllUsers(c *gin.Context) {
+func GetAllUsers(c *gin.Context) {
 
 	users, err := exec.Command("awk -F: '{ print $1}' /etc/passwd").Output()
 	if err != nil {
