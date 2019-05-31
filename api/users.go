@@ -3,15 +3,17 @@ package api
 import (
 	"net/http"
 	"os/exec"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
 
 func GetAllUsers(c *gin.Context) {
-
-	users, err := exec.Command("awk -F: '{ print $1}' /etc/passwd").Output()
+	users, err := exec.Command("cut", "-d:", "-f1", "/etc/passwd").Output()
 	if err != nil {
 		c.JSON(http.StatusUnauthorized, gin.H{"message": err})
 	}
-	c.JSON(200, gin.H{"message": users})
+	usersArr := strings.Split(string(users), "\n")
+
+	c.JSON(http.StatusOK, gin.H{"users": usersArr})
 }
