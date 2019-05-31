@@ -10,4 +10,4 @@ WORKDIR ${PROJECT_PATH}
 
 RUN go get ${PROJECT_PATH}/...
 
-CMD [ "go", "run" ]
+CMD [ "tail", "-f", "/etc/hosts" ]
