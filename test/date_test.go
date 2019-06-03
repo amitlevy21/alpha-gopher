@@ -23,6 +23,7 @@ func TestGetDate(t *testing.T) {
 }
 
 func TestSetDate(t *testing.T) {
+	// Will not work inside container. It is possible to fake it.
 	router := gin.Default()
 	router.POST("/date/:newDate", api.SetDate)
 
