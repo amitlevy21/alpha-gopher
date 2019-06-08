@@ -4,7 +4,7 @@ ENV PROJECT_PATH /go/src/github.com/amitlevy21/alpha-gopher
 
 EXPOSE 8080
 
-RUN mkdir -p ${PROJECT_PATH}
+RUN mkdir -p ${PROJECT_PATH} /backup
 
 WORKDIR ${PROJECT_PATH}
 
