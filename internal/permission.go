@@ -39,10 +39,6 @@ func GetCurrentPermissions(path string) (string, error) {
 }
 
 func ChangePermissions(userName, path string, permissionNumber uint32) error {
-	err := ChangeOwnership(path, userName)
-	if err != nil {
-		return err
-	}
-	err = os.Chmod(path, os.FileMode(permissionNumber))
+	err := os.Chmod(path, os.FileMode(permissionNumber))
 	return err
 }
