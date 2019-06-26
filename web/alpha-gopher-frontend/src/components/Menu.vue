@@ -1,17 +1,17 @@
 <template>
   <Slide>
-    <a id="home" href="#">
+    <router-link to="/">
       <span>Home</span>
-    </a>
-    <a id="file-system" href="#">
+    </router-link>
+    <router-link to="/file-system">
       <span>File System</span>
-    </a>
+    </router-link>
     <router-link to="/users">
       <span>User</span>
     </router-link>
-    <a id="system" href="#">
+    <router-link to="/system">
       <span>System</span>
-    </a>
+    </router-link>
   </Slide>
 </template>
 
