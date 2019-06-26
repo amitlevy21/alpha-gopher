@@ -1,30 +1,17 @@
 <template>
   <div id="app">
-    <Slide>
-      <a id="home" href="#">
-        <span>Home</span>
-      </a>
-      <a id="file-system" href="#">
-        <span>File System</span>
-      </a>
-      <a id="user-management" href="#users">
-        <span>User</span>
-      </a>
-      <a id="system" href="#">
-        <span>System</span>
-      </a>
-    </Slide>
-    <img alt="Vue logo" src="./assets/logo.png">
+    <Menu></Menu>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import { Slide } from "vue-burger-menu";
+import Menu from "./components/Menu.vue"
 
 export default {
   name: 'AlphaGopher',
   components: {
-    Slide
+    Menu
   }
 }
 </script>
