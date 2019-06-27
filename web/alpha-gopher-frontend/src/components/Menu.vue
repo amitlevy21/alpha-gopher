@@ -3,7 +3,7 @@
     <router-link to="/">
       <span>Home</span>
     </router-link>
-    <router-link to="/file-system">
+    <router-link to="/filesystem">
       <span>File System</span>
     </router-link>
     <router-link to="/users">
