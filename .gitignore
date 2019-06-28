@@ -20,3 +20,7 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+# generated automatically
+web/alpha-gopher-frontend/src/components/HTop.vue
+web/alpha-gopher-frontend/public/htop.html
