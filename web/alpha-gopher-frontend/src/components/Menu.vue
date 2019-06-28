@@ -12,6 +12,9 @@
     <router-link to="/system">
       <span>System</span>
     </router-link>
+    <router-link to="/help">
+      <span>Help</span>
+    </router-link>
   </Slide>
 </template>
 
