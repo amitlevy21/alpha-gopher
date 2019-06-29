@@ -12,7 +12,8 @@
     "vue": "^2.6.10",
     "vue-burger-menu": "^2.0.1",
     "vue-resource": "^1.5.1",
-    "vue-router": "^3.0.6"
+    "vue-router": "^3.0.6",
+    "vue-terminal-ui": "^0.1.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",
