@@ -3,7 +3,7 @@
     <h1>Users</h1>
     <div id="users-list">
       <ul>
-        <li v-for="user in users">
+        <li v-for="user in users" :key="user">
           {{ user }}
         </li>
       </ul>
@@ -11,6 +11,9 @@
     <input type="text" v-model="newUserName" required /> 
     <button @:click="addUser">
       Add User
+    </button>
+    <button @:click="removeUser">
+      Remove User
     </button>
   </div>
 </template>
@@ -34,12 +37,15 @@ export default {
         });
   },
   methods: {
-    addUser: function () {
+    addUser () {
       this.$http.post('users/new/' + this.newUserName).then(function (data) {
 
       }).catch(function (error) {
         console.log("failed to add user error:" + error)
       })
+    },
+    removeUser() {
+
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <Menu />
+    <app-menu />
     <router-view />
   </div>
 </template>
@@ -12,7 +12,7 @@ import Menu from "./components/Menu.vue"
 export default {
   name: 'AlphaGopher',
   components: {
-    Menu
+    'app-menu': Menu
   }
 }
 </script>
