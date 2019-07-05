@@ -1,10 +1,9 @@
 <template>
-    <div>
-
-        <h1>Help</h1>
-        <b>
-        </b>
-    </div>
+  <div>
+    <h1>Help</h1>
+    <b>
+    </b>
+  </div>
 </template>
 
 <script>
