@@ -2,8 +2,6 @@ FROM golang
 
 ENV PROJECT_PATH /go/src/github.com/amitlevy21/alpha-gopher
 
-EXPOSE 8080
-
 RUN mkdir -p ${PROJECT_PATH} /backup
 
 WORKDIR ${PROJECT_PATH}
@@ -15,4 +13,4 @@ RUN go get -u github.com/stretchr/testify/assert
 
 COPY . ${PROJECT_PATH}
 
-CMD [ "./web/alpha-gopher-frontend/vue_htop.sh" ]
+CMD [ "go", "run", "./cmd/main.go" ]

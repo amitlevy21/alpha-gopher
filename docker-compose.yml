@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  client:
+    container_name: alpha-gopher-client
+    volumes:
+      - "/home/amit/go/src/github.com/amitlevy21/alpha-gopher/web/alpha-gopher-frontend:/app"
+    build: ./web/alpha-gopher-frontend
+    ports:
+      - 8080:8080
+    command: npm run serve
+    links:
+      - server
+  
+  server:
+    container_name: alpha-gopher-server
+    volumes:
+      - "/home/amit/go/src/github.com/amitlevy21/alpha-gopher/cmd:/go/src/github.com/amitlevy21/alpha-gopher/cmd"
+      - "/home/amit/go/src/github.com/amitlevy21/alpha-gopher/api:/go/src/github.com/amitlevy21/alpha-gopher/api"
+      - "/home/amit/go/src/github.com/amitlevy21/alpha-gopher/internal:/go/src/github.com/amitlevy21/alpha-gopher/internal"
+      - "/home/amit/go/src/github.com/amitlevy21/alpha-gopher/test:/go/src/github.com/amitlevy21/alpha-gopher/test"
+    build: .
+    ports:
+      - 3000:3000
+    command: go run ./cmd/main.go
