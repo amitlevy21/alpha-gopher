@@ -14,7 +14,7 @@ import (
 
 func TestCopyFile(t *testing.T) {
 	router := gin.Default()
-	router.POST("/fs/cp", api.Copy)
+	router.POST("/filesystem/cp", api.Copy)
 	srcFile := "test.txt"
 	srcPath := fmt.Sprintf("/%s", srcFile)
 	dstFile := "test.txt"
@@ -22,7 +22,7 @@ func TestCopyFile(t *testing.T) {
 	w := httptest.NewRecorder()
 
 	os.Create(srcPath)
-	req, _ := http.NewRequest("POST", fmt.Sprintf("/fs/cp?src=%s&dst=%s&opts=-r", srcPath, dstPath), nil)
+	req, _ := http.NewRequest("POST", fmt.Sprintf("/filesystem/cp?src=%s&dst=%s&opts=-r", srcPath, dstPath), nil)
 	router.ServeHTTP(w, req)
 
 	assert.Equal(t, 200, w.Code)
@@ -34,7 +34,7 @@ func TestCopyFile(t *testing.T) {
 
 func TestCopyWithoutOpts(t *testing.T) {
 	router := gin.Default()
-	router.POST("/fs/cp", api.Copy)
+	router.POST("/filesystem/cp", api.Copy)
 	srcFile := "test.txt"
 	srcPath := fmt.Sprintf("/%s", srcFile)
 	dstFile := "test.txt"
@@ -42,7 +42,7 @@ func TestCopyWithoutOpts(t *testing.T) {
 	w := httptest.NewRecorder()
 
 	os.Create(srcPath)
-	req, _ := http.NewRequest("POST", fmt.Sprintf("/fs/cp?src=%s&dst=%s", srcPath, dstPath), nil)
+	req, _ := http.NewRequest("POST", fmt.Sprintf("/filesystem/cp?src=%s&dst=%s", srcPath, dstPath), nil)
 	router.ServeHTTP(w, req)
 
 	assert.Equal(t, 200, w.Code)
@@ -54,7 +54,7 @@ func TestCopyWithoutOpts(t *testing.T) {
 
 func TestMoveFile(t *testing.T) {
 	router := gin.Default()
-	router.POST("/fs/mv", api.Move)
+	router.POST("/filesystem/mv", api.Move)
 	srcFile := "test.txt"
 	srcPath := fmt.Sprintf("/%s", srcFile)
 	dstFile := "test.txt"
@@ -62,7 +62,7 @@ func TestMoveFile(t *testing.T) {
 	w := httptest.NewRecorder()
 
 	os.Create(srcPath)
-	req, _ := http.NewRequest("POST", fmt.Sprintf("/fs/mv?src=%s&dst=%s", srcPath, dstPath), nil)
+	req, _ := http.NewRequest("POST", fmt.Sprintf("/filesystem/mv?src=%s&dst=%s", srcPath, dstPath), nil)
 	router.ServeHTTP(w, req)
 	assert.Equal(t, 200, w.Code)
 	assert.FileExists(t, dstPath)
@@ -73,7 +73,7 @@ func TestMoveFile(t *testing.T) {
 
 func TestRenameFile(t *testing.T) {
 	router := gin.Default()
-	router.POST("/fs/mv", api.Move)
+	router.POST("/filesystem/mv", api.Move)
 	srcFile := "test.txt"
 	srcPath := fmt.Sprintf("/%s", srcFile)
 	dstFile := "rename.txt"
@@ -81,7 +81,7 @@ func TestRenameFile(t *testing.T) {
 	w := httptest.NewRecorder()
 
 	os.Create(srcPath)
-	req, _ := http.NewRequest("POST", fmt.Sprintf("/fs/mv?src=%s&dst=%s", srcPath, dstPath), nil)
+	req, _ := http.NewRequest("POST", fmt.Sprintf("/filesystem/mv?src=%s&dst=%s", srcPath, dstPath), nil)
 	router.ServeHTTP(w, req)
 	assert.Equal(t, 200, w.Code)
 	assert.FileExists(t, dstPath)
@@ -92,11 +92,11 @@ func TestRenameFile(t *testing.T) {
 
 func TestListFiles(t *testing.T) {
 	router := gin.Default()
-	router.POST("/fs/ls", api.List)
+	router.POST("/filesystem/ls", api.List)
 	path := "/lib"
 	w := httptest.NewRecorder()
 
-	req, _ := http.NewRequest("POST", fmt.Sprintf("/fs/ls?path=%s", path), nil)
+	req, _ := http.NewRequest("POST", fmt.Sprintf("/filesystem/ls?path=%s", path), nil)
 	router.ServeHTTP(w, req)
 	assert.Equal(t, 200, w.Code)
 	assert.Contains(t, w.Body.String(), "systemd")
@@ -104,11 +104,11 @@ func TestListFiles(t *testing.T) {
 
 func TestListFilesOpts(t *testing.T) {
 	router := gin.Default()
-	router.POST("/fs/ls", api.List)
+	router.POST("/filesystem/ls", api.List)
 	path := "/lib"
 	w := httptest.NewRecorder()
 
-	req, _ := http.NewRequest("POST", fmt.Sprintf("/fs/ls?path=%s&opts=-lst", path), nil)
+	req, _ := http.NewRequest("POST", fmt.Sprintf("/filesystem/ls?path=%s&opts=-lst", path), nil)
 	router.ServeHTTP(w, req)
 	assert.Equal(t, 200, w.Code)
 	assert.Contains(t, w.Body.String(), "systemd")
