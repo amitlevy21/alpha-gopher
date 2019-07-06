@@ -10,19 +10,19 @@ import (
 )
 
 func GetAllUsers(c *gin.Context) {
-	users, err := internal.GetAllUsers()
+	std, err := internal.GetAllUsers()
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
+		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error(), "std": std})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"users": users})
+	c.JSON(http.StatusOK, gin.H{"users": std})
 }
 
 func AddUser(c *gin.Context) {
 	userName := c.Param("name")
-	err := internal.AddUser(userName)
+	std, err := internal.AddUser(userName)
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
+		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error(), "std": std})
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{"user": fmt.Sprintf("user %s created", userName)})
@@ -30,9 +30,9 @@ func AddUser(c *gin.Context) {
 
 func DeleteUser(c *gin.Context) {
 	userName := c.Param("name")
-	err := internal.DeleteUser(userName)
+	std, err := internal.DeleteUser(userName)
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
+		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error(), "std": std})
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{"user": fmt.Sprintf("user %s deleted", userName)})
@@ -41,9 +41,9 @@ func DeleteUser(c *gin.Context) {
 func ChangeUserPassword(c *gin.Context) {
 	userName := c.Param("name")
 	password := c.Param("pass")
-	err := internal.ChangeUserPassword(userName, password)
+	std, err := internal.ChangeUserPassword(userName, password)
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
+		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error(), "std": std})
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{"user": fmt.Sprintf("user %s password changed", userName)})

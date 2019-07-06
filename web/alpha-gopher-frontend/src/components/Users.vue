@@ -3,18 +3,28 @@
     <h1>Users</h1>
     <div id="users-list">
       <ul>
-        <li v-for="user in users" :key="user">
+        <li
+          v-for="(user, index) in users"
+          :key="index"
+        >
           {{ user }}
         </li>
       </ul>
     </div>
-    <input type="text" v-model="newUserName" required /> 
-    <button @:click="addUser">
+    <input
+      v-model="newUserName"
+      type="text"
+      required
+    > 
+    <button @click.prevent="addUser">
       Add User
     </button>
-    <button @:click="removeUser">
+    <button @click.prevent="removeUser">
       Remove User
     </button>
+    <div v-if="submitted">
+      <h3>User Added!</h3>
+    </div>
   </div>
 </template>
 
@@ -24,28 +34,38 @@ export default {
   data() {
     return {
       users: [],
-      newUserName: ''
+      newUserName: '',
+      submitted: false
     }
   },
   created() {
     this.$http.get('users/all').then(function(data){
-            this.users = data.body
-        }).catch(function (error) {
-          console.log(error);
-          
-          console.log("failed to get users" + error.body)
-        });
+      this.users = data.body.users
+    }).catch(function (error) {
+      console.error("failed to get users" + error.body)
+    });
   },
   methods: {
     addUser () {
       this.$http.post('users/new/' + this.newUserName).then(function (data) {
-
+        this.users.push(this.newUserName)
+        this.submitted = true
       }).catch(function (error) {
-        console.log("failed to add user error:" + error)
+        console.error("failed to add user error:" + error.body)
       })
     },
     removeUser() {
-
+      this.$http.delete('users/' + this.newUserName).then(function (data) {
+      for( var i = 0; i < this.users.length; i++){ 
+        if ( this.users[i] === this.newUserName) {
+          this.users.splice(i, 1); 
+        }
+      }
+        console.log(data)
+      }).catch(function (error) {
+        console.log(error)
+        console.error("failed to delete user error:" + error)
+      })
     }
   }
 }
