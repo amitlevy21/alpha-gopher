@@ -11,6 +11,9 @@ services:
     command: npm run serve
     links:
       - server
+    networks:
+      static-network:
+        ipv4_address: 172.20.128.1
   
   server:
     container_name: alpha-gopher-server
@@ -23,3 +26,12 @@ services:
     ports:
       - 3000:3000
     command: go run ./cmd/main.go
+    networks:
+      static-network:
+        ipv4_address: 172.20.128.2
+
+networks:
+  static-network:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

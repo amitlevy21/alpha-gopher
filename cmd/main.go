@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/amitlevy21/alpha-gopher/api"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -17,6 +18,13 @@ func main() {
 	router.GET("/owner", api.GetOwner)
 	router.POST("/owner/:newOwner", api.ChangeOwnership)
 	router.GET("/permission", api.GetCurrentPermissions)
+	router.GET("/users/all", api.GetAllUsers)
+	router.POST("/users/new/:name", api.AddUser)
+	router.DELETE("/users/:name", api.DeleteUser)
+	router.POST("/users/cred/:name/:pass", api.ChangeUserPassword)
 
+	config := cors.DefaultConfig()
+	config.AllowOrigins = []string{"http://172.20.128.1:8080"}
+	router.Use(cors.New(config))
 	router.Run(":3000")
 }
