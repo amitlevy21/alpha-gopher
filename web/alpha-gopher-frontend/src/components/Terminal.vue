@@ -1,11 +1,13 @@
 <template>
   <div>
     <h1>Terminal</h1>
-    <app-terminal :intro="intro"
-                console-sign="$"
-                allow-arbitrary
-                height="500px"
-                @command="onCliCommand"/>
+    <app-terminal
+      :intro="intro"
+      console-sign="$"
+      allow-arbitrary
+      height="500px"
+      @command="onCliCommand"
+    />
   </div>
 </template>
 
@@ -17,7 +19,7 @@ export default {
     'app-terminal': VueTerminal
   },
   methods: {
-      onCliCommand (data, resolve, reject) {
+      onCliCommand (data, resolve, _) {
         console.log(data.text)
         resolve('')
       }

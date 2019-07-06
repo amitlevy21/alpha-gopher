@@ -1,8 +1,7 @@
 <template>
   <div>
     <h1>Help</h1>
-    <b>
-    </b>
+    <b />
   </div>
 </template>
 

@@ -1,25 +1,29 @@
 <template>
   <div>
     <div 
-      @click="nodeClicked"
       :style="{'margin-left': `${depth * 20}px`}"
       class="node"
+      @click="nodeClicked"
     >
       <span 
         v-if="hasChildren"
         class="type"
       >{{ expanded ? '&#9660;' : '&#9658;' }}</span>
-      <span class="type" v-else>&#9671;</span>
+      <span
+        v-else
+        class="type"
+      >&#9671;</span>
       <span>{{ node.name }}</span>
     </div>
-    <TreeBrowser 
-      v-if="expanded"
-      v-for="child in node.children"
-      :key="child.name"
-      :node="child"
-      :depth="depth + 1"
-      @onClick="(node) => $emit('onClick', node)"
-    />
+    <div v-if="expanded">
+      <TreeBrowser 
+        v-for="child in node.children"
+        :key="child.name"
+        :node="child"
+        :depth="depth + 1"
+        @onClick="(node) => $emit('onClick', node)"
+      />
+    </div>
   </div>
 </template>
 
@@ -27,7 +31,10 @@
 export default {
   name: 'TreeBrowser',
   props: {
-    node: Object,
+    node: {
+      type: Object,
+      default: function() {}
+    },
     depth: {
       type: Number,
       default: 0,
@@ -38,17 +45,17 @@ export default {
       expanded: false,
     }
   },
+  computed: {
+    hasChildren() {
+      return this.node.children;
+    }
+  },
   methods: {
     nodeClicked() {
       this.expanded = !this.expanded;
       if (!this.hasChildren) {
         this.$emit('onClick', this.node);
       }
-    }
-  },
-  computed: {
-    hasChildren() {
-      return this.node.children;
     }
   }
 }
