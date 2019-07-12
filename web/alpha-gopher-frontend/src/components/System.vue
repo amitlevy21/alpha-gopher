@@ -1,10 +1,6 @@
 <template>
   <div>
     <h1>System Tools</h1>
-    <h3>Date:</h3>
-    <button @click="changeDate">
-      Change System Date
-    </button>
     <button @click="backup">
       Backup System
     </button>
@@ -21,15 +17,16 @@ export default {
   },
   data () {
     return {
-      date: "23/2/20"
+      doneBackup: false
     }
   },
   methods: {
-    changeDate() {
-      alert("changed!");
-    },
     backup() {
-      alert("changed!");
+      this.$http.post('/backup?path=/').then(function (data) {
+        this.doneBackup = true
+      }).catch(function (error) {
+        console.error("failed to backup " + error)
+      })
     }
   }
 };
