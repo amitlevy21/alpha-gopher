@@ -15,6 +15,7 @@ func main() {
 	router.POST("/filesystem/cp", api.Copy)
 	router.POST("/filesystem/ls", api.List)
 	router.POST("/filesystem/mv", api.Move)
+	router.GET("/filesystem/ls/all", api.ListAll)
 	router.GET("/owner", api.GetOwner)
 	router.POST("/owner/:newOwner", api.ChangeOwnership)
 	router.GET("/permission", api.GetCurrentPermissions)

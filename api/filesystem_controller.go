@@ -43,3 +43,12 @@ func List(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, gin.H{"entries": combinedStd})
 }
+
+func ListAll(c *gin.Context) {
+	filesystem, err := internal.BuildTree()
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error(), "std": filesystem})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"std": filesystem})
+}

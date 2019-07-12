@@ -114,3 +114,14 @@ func TestListFilesOpts(t *testing.T) {
 	assert.Contains(t, w.Body.String(), "systemd")
 	assert.Contains(t, w.Body.String(), "root")
 }
+
+func TestListAll(t *testing.T) {
+	router := gin.Default()
+	router.POST("/filesystem/ls/all", api.ListAll)
+	w := httptest.NewRecorder()
+
+	req, _ := http.NewRequest("POST", "/filesystem/ls/all", nil)
+	router.ServeHTTP(w, req)
+	assert.Equal(t, 200, w.Code)
+	assert.Contains(t, w.Body.String(), "cgroup")
+}

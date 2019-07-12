@@ -34,3 +34,8 @@ func List(path string, opts []string) ([]string, error) {
 	entries := strings.Split(s, "\n")
 	return entries, err
 }
+
+func BuildTree() (string, error) {
+	combinedStd, err := exec.Command("tree", "-JDug", "/").CombinedOutput()
+	return string(combinedStd), err
+}

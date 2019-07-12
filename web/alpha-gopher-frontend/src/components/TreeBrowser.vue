@@ -17,7 +17,7 @@
     </div>
     <div v-if="expanded">
       <TreeBrowser 
-        v-for="child in node.children"
+        v-for="child in node.contents"
         :key="child.name"
         :node="child"
         :depth="depth + 1"
@@ -47,7 +47,7 @@ export default {
   },
   computed: {
     hasChildren() {
-      return this.node.children;
+      return this.node.contents;
     }
   },
   methods: {
