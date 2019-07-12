@@ -12,7 +12,8 @@
 </template>
 
 <script>
-import VueTerminal from "vue-terminal-ui";
+import VueTerminal from "./VueTerminal";
+import $ from 'jquery'
 
 export default {
   components: {
