@@ -36,6 +36,6 @@ func List(path string, opts []string) ([]string, error) {
 }
 
 func BuildTree() (string, error) {
-	combinedStd, err := exec.Command("tree", "-JDug", "/").CombinedOutput()
+	combinedStd, err := exec.Command("tree", "-JDugfph", "/").CombinedOutput()
 	return string(combinedStd), err
 }

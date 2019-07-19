@@ -13,7 +13,22 @@
         v-else
         class="type"
       >&#9671;</span>
-      <span>{{ node.name }}</span>
+      <span>
+        {{ nodeName }}
+      </span>
+      <ul v-if="node.name != '/'">
+        <li>
+          User: {{ node.user }}
+        </li>
+        <li>
+          Group: {{ node.group }}
+        </li>
+        <li>
+          Last Changed: {{ node.time }}
+        </li>
+        
+        <app-popup />
+      </ul>
     </div>
     <div v-if="expanded">
       <TreeBrowser 
@@ -28,8 +43,12 @@
 </template>
 
 <script>
+import Popup from "./Popup.vue";
 export default {
   name: 'TreeBrowser',
+  components: {
+    'app-popup': Popup
+  },
   props: {
     node: {
       type: Object,
@@ -43,11 +62,20 @@ export default {
   data() {
     return {
       expanded: false,
+      dialog: false
     }
   },
   computed: {
     hasChildren() {
       return this.node.contents;
+    },
+    nodeName() {
+      if (this.node.name == '/') {
+        return '/'
+      } else {
+        let arr = this.node.name.split('/')
+        return arr.pop()
+      }
     }
   },
   methods: {
@@ -68,5 +96,16 @@ export default {
 }
 .type {
   margin-right: 10px;
+}
+ul {
+  list-style-type: none;
+  margin: 4px;
+  padding: 4px;
+  overflow: hidden;
+}
+li {
+  float: left;
+  margin: 4px;
+  padding: 0;
 }
 </style>
