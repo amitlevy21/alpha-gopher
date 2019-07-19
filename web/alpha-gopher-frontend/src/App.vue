@@ -1,10 +1,10 @@
 <template>
   <div id="app">
+    <app-menu />
     <img
       alt="Vue logo"
       src="./assets/logo.png"
     >
-    <app-menu />
     <router-view />
   </div>
 </template>
@@ -28,5 +28,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  margin-left: 20px;
+}
+
+div {
+  margin: 10px
 }
 </style>
