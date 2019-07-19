@@ -1,10 +1,7 @@
 <template>
   <div>
     <h1>System Tools</h1>
-    <button @click="backup">
-      Backup System
-    </button>
-    <system-monitor />
+    <system-monitor id="htop" />
   </div>
 </template>
 
@@ -13,24 +10,13 @@ import SystemMonitor from './HTop.vue'
 
 export default {
   components: {
-    'system-monitor': SystemMonitor
+    'system-monitor': SystemMonitor,
   },
-  data () {
-    return {
-      doneBackup: false
-    }
-  },
-  methods: {
-    backup() {
-      this.$http.post('/backup?path=/').then(function (data) {
-        this.doneBackup = true
-      }).catch(function (error) {
-        console.error("failed to backup " + error)
-      })
-    }
-  }
 };
 </script>
 
-<style>
+<style scoped>
+#htop {
+  text-align: left;
+}
 </style>

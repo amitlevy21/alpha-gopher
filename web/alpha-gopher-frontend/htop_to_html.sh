@@ -2,4 +2,4 @@
 
 dst=$1
 
-echo q | htop| aha --line-fix > $dst
+echo q | htop -C | aha --line-fix > $dst

@@ -1,5 +1,5 @@
 <template>
-  <sys-monitor />
+  <sys-monitor id="htop" />
 </template>
 
 <script>
@@ -14,6 +14,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+#htop {
+  background: black;
+}
 </style>
