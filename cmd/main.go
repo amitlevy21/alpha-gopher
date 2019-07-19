@@ -24,6 +24,7 @@ func main() {
 	router.DELETE("/users/:name", api.DeleteUser)
 	router.POST("/users/cred/:name/:pass", api.ChangeUserPassword)
 	router.POST("/terminal/exec", api.ExecCommand)
+	router.GET("/devices", api.GetDevices)
 
 	config := cors.DefaultConfig()
 	config.AllowOrigins = []string{"http://172.20.128.1:8080"}

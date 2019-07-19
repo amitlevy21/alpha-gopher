@@ -15,6 +15,9 @@
     <router-link to="/backup">
       <span>Backup</span>
     </router-link>
+    <router-link to="/devices">
+      <span>Devices</span>
+    </router-link>
     <router-link to="/terminal">
       <span>Terminal</span>
     </router-link>
@@ -37,12 +40,5 @@ export default {
 
 
 <style scoped>
-#the-slide {
-      position: fixed; /* Stay in place */
-      background-color: rgb(63, 63, 65); /* Black*/
-      padding-top: 24px; /* Place content 60px from the top */
-      z-index: 1000; /* Stay on top */
-      top: 100;
-      left: 0;
-    }
+
 </style>
