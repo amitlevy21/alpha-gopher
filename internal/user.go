@@ -3,13 +3,11 @@ package internal
 import (
 	"fmt"
 	"os/exec"
-	"strings"
 )
 
-func GetAllUsers() ([]string, error) {
-	users, err := exec.Command("cut", "-d:", "-f1", "/etc/passwd").CombinedOutput()
-	usersArr := strings.Split(string(users), "\n")
-	return usersArr, err
+func GetAllUsers() (string, error) {
+	users, err := exec.Command("bash", "-c", "/go/src/github.com/amitlevy21/alpha-gopher/internal/get_user_data.sh").CombinedOutput()
+	return string(users), err
 }
 
 func AddUser(userName string) (string, error) {

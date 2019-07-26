@@ -1,0 +1,1 @@
+getent passwd | cut -d: -f1 | /usr/bin/xidel -s - --xquery '{"users":x:lines($raw) ! {"username":.,"details":{|for $x in x:lines(system(x"chage -l {.}")) let $a:=tokenize($x,":") return {string-join(for $x in tokenize(normalize-space($a[1])," ") return upper-case(substring($x,1,1))||substring($x,2)):normalize-space($a[2]) ! (if (. castable as decimal) then number(.) else .)}|}}}'

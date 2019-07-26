@@ -1,15 +1,14 @@
 <template>
   <div id="users">
     <h1>Users</h1>
-    <div id="users-list">
-      <ul>
-        <li
-          v-for="(user, index) in users"
-          :key="index"
-        >
-          {{ user }}
-        </li>
-      </ul>
+    <div>
+      <b-table 
+        striped
+        hover
+        small
+        :items="users"
+        :fields="fields"
+      />
     </div>
     <b-form-input
       v-model="newUserName"
@@ -37,14 +36,49 @@
 </template>
 
 <script>
+import { BTable } from 'bootstrap-vue'
 import { BFormInput } from 'bootstrap-vue'
 
 export default {
   name: 'Users',
-  components: { BFormInput },
+  components: { BFormInput, BTable },
   data() {
     return {
       users: [],
+      fields: {
+          username: {
+            label: 'Username',
+            sortable: true
+          },
+          'details.LastPasswordChange': {
+            label: 'Last Password Change',
+            sortable: true
+          },
+          'details.PasswordExpires': {
+            label: 'Password Expires',
+            sortable: true
+          },
+          'details.PasswordInactive': {
+            label: 'Password Inactive',
+            sortable: true
+          },
+          'details.AccountExpires': {
+            label: 'Account Expires',
+            sortable: true
+          },
+          'details.MinimumNumberOfDaysBetweenPasswordChange': {
+            label: 'Minimum Days Between Password Change',
+            sortable: true
+          },
+          'details.MaximumNumberOfDaysBetweenPasswordChange': {
+            label: 'Maximum Days Between Password Change',
+            sortable: true
+          },
+          'details.NumberOfDaysOfWarningBeforePasswordExpires': {
+            label: 'Warning Before Password Expires',
+            sortable: true
+          },
+        },
       newUserName: '',
       submitted: false,
       error: false
@@ -52,8 +86,11 @@ export default {
   },
   created() {
     this.$http.get('users/all').then(function(data){
-      this.users = data.body.users
+      console.log(data)
+      this.users = JSON.parse(data.body.users).users
+      console.log(this.users)
     }).catch(function (error) {
+      console.log(error)
       console.error("failed to get users" + error.body)
       
     });
