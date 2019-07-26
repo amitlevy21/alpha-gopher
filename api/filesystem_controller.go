@@ -32,6 +32,17 @@ func Move(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{})
 }
 
+func Remove(c *gin.Context) {
+	dst := c.Query("dst")
+
+	combinedStd, err := internal.Remove(dst)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error(), "std": combinedStd})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{})
+}
+
 func List(c *gin.Context) {
 	path := c.Query("path")
 	opts := c.QueryArray("opts")

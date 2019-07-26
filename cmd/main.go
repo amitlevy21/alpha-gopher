@@ -15,6 +15,7 @@ func main() {
 	router.POST("/filesystem/cp", api.Copy)
 	router.POST("/filesystem/ls", api.List)
 	router.POST("/filesystem/mv", api.Move)
+	router.POST("/filesystem/rm", api.Remove)
 	router.GET("/filesystem/ls/all", api.ListAll)
 	router.GET("/owner", api.GetOwner)
 	router.POST("/owner/:newOwner", api.ChangeOwnership)
@@ -24,7 +25,6 @@ func main() {
 	router.DELETE("/users/:name", api.DeleteUser)
 	router.POST("/users/cred/:name/:pass", api.ChangeUserPassword)
 	router.POST("/terminal/exec", api.ExecCommand)
-	router.GET("/devices", api.GetDevices)
 
 	config := cors.DefaultConfig()
 	config.AllowOrigins = []string{"http://172.20.128.1:8080"}

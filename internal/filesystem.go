@@ -21,6 +21,11 @@ func Move(src, dst string) (string, error) {
 	return string(combinedStd), err
 }
 
+func Remove(dst string) (string, error) {
+	combinedStd, err := exec.Command("rm", "-rf", dst).CombinedOutput()
+	return string(combinedStd), err
+}
+
 func List(path string, opts []string) ([]string, error) {
 	args := []string{}
 	if opts != nil {
