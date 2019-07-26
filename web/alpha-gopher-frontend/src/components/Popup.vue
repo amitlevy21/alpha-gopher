@@ -3,24 +3,21 @@
     <button 
       class="btn btn-primary"
       :show="show" 
-      @click="show=true"
-      @save="moveFile"
+      @click="show=true;methodToUse=moveFile"
     >
       Move
     </button>
     <button 
       class="btn btn-primary"
       :show="show" 
-      @click="show=true"
-      @save="copyFile"
+      @click="show=true;methodToUse=copyFile"
     >
       Copy
     </button>
     <button 
       class="btn btn-primary"
       :show="show" 
-      @click="show=true"
-      @save="deleteFile"
+      @click="show=true;methodToUse=deleteFile"
     >
       Delete
     </button>
@@ -28,13 +25,25 @@
       :show="show" 
       title="Please fill destination path below" 
       @close="show=false"
-      @save="show=false"
+      @save="show=false;methodToUse()"
     >
       <label>Destination</label>
       <b-form-input 
+        v-model="text"
+        placeholder="enter destination path"
         type="text"
       /> 
     </stack-modal>
+    <stack-modal
+      :show="show_confirm" 
+      title="Done!" 
+      @close="show_confirm=false"
+    />
+    <stack-modal
+      :show="show_error" 
+      title="An error occurod during the action" 
+      @close="show_error=false"
+    />
   </div>
 </template>
 
@@ -49,24 +58,43 @@ export default {
     pop: {
       type: Boolean,
       default () {return false}
-    }   
+    },
+    node: {
+      type: Object,
+      default () {return {}}
+    },    
   },
   data() {
     return {
       show: this.pop,
-      show_second: false,
-      show_third: false
+      show_confirm: false,
+      show_error: false,
+      text: '',
+      methodToUse: ''
     };
   },
   methods: {
-    moveFile(path) {
-        alert(path)
+    moveFile() {
+      this.$http.post(`filesystem/mv?src=${this.node.name}&dst=${this.text}`).then(data => {
+        this.show_confirm = true
+      }).catch(err => {
+        this.show_error = true
+      })
     },
-    copyFile(path) {
-        
+    copyFile() {
+      this.$http.post(`filesystem/cp?src=${this.node.name}&dst=${this.text}`).then(data => {
+        this.show_confirm = true
+      }).catch(err => {
+        this.show_error = true
+      })
     },
-    deleteFile(path) {
-        
+    deleteFile() {
+      this.$http.post(`filesystem/rm?dst=${this.node.name}`).then(data => {
+        this.show_confirm = true
+      }).catch(err => {
+        console.log(err)
+        this.show_error = true
+      })
     }
   }
 };

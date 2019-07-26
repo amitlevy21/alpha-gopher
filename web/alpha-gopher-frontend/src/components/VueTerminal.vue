@@ -1,7 +1,7 @@
 <template>
   <div class="vue-terminal-wrapper">
     <div
-      v-if="this.waiting"
+      v-if="waiting"
       class="lds-css"
     >
       <div
@@ -13,7 +13,7 @@
     </div>
     <div
       id="terminal"
-      :style="{ maxHeight: this.height }"
+      :style="{ maxHeight: height }"
       class="boring"
       :class="{ 'default-height': !fullScreen, 'fullscreen-height': fullScreen }"
       data-theme="boring" 

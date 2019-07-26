@@ -27,7 +27,7 @@
           Last Changed: {{ node.time }}
         </li>
         
-        <app-popup />
+        <app-popup :node="node" />
       </ul>
     </div>
     <div v-if="expanded">

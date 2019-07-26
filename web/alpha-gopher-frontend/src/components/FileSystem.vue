@@ -26,7 +26,6 @@ export default {
     this.$http
       .get("filesystem/ls/all")
       .then(function(data) {
-        console.log(data);
         this.root = JSON.parse(data.body.std)[0];
       })
       .catch(function(error) {
@@ -35,7 +34,6 @@ export default {
   },
   methods: {
     nodeWasClicked(node) {
-      alert(node.name);
     }
   }
 };
