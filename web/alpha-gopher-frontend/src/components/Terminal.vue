@@ -2,7 +2,7 @@
   <div>
     <h1>Terminal</h1>
     <app-terminal
-      intro="intro"
+      intro="Welcome to the Alpha Gopher terminal, you are running as root inside a container"
       console-sign="$"
       allow-arbitrary
       height="500px"
