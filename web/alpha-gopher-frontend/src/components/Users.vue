@@ -10,22 +10,25 @@
         :fields="fields"
       />
     </div>
-    <b-form-input
-      v-model="newUserName"
-      type="text"
-    /> 
-    <button 
-      class="btn btn-primary"
-      @click="addUser"
-    >
-      Add User
-    </button>
-    <button 
-      class="btn btn-primary"
-      @click="removeUser"
-    >
-      Remove User
-    </button>
+    <div id="user-panel">
+      <b-form-input
+        v-model="newUserName"
+        placeholder="enter user name"
+        type="text"
+      /> 
+      <button 
+        class="btn btn-primary"
+        @click="addUser"
+      >
+        Add User
+      </button>
+      <button 
+        class="btn btn-primary"
+        @click="removeUser"
+      >
+        Remove User
+      </button>
+    </div>
     <div v-if="submitted">
       <h3>User Added!</h3>
     </div>
@@ -127,6 +130,11 @@ export default {
 </script>
 
 <style scoped>
+#user-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 h3 {
   margin: 40px 0 0;
 }

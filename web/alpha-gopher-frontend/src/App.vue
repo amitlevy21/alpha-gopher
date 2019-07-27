@@ -5,7 +5,9 @@
       alt="Vue logo"
       src="./assets/logo.png"
     >
-    <router-view />
+    <div id="app-content">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -30,8 +32,16 @@ export default {
   margin-top: 60px;
   margin-left: 20px;
 }
-
+input {
+  max-width: 200px;
+  text-align: center;
+}
+#app-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 div {
-  margin: 10px
+  margin: 20px
 }
 </style>

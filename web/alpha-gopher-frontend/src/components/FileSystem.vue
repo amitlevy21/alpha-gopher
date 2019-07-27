@@ -10,6 +10,7 @@
       />
     </div>
     <tree-browser
+      id="browser"
       :node="root"
       @onClick="nodeWasClicked"
     />
@@ -51,4 +52,7 @@ export default {
 
 
 <style scoped>
+#browser {
+  padding: 15px;
+}
 </style>
