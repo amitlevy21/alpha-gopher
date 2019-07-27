@@ -1,6 +1,7 @@
 import Home from './components/Home.vue'
 import Users from './components/Users.vue'
 import FileSystem from './components/FileSystem.vue'
+import Finder from './components/Finder.vue'
 import System from './components/System.vue'
 import Backup from './components/Backup.vue'
 import Devices from './components/Devices.vue'
@@ -11,6 +12,7 @@ export default [
     {path: '/', component: Home},
     {path: '/users', component: Users},
     {path: '/filesystem', component: FileSystem},
+    {path: '/finder', component: Finder},
     {path: '/system', component: System},
     {path: '/backup', component: Backup},
     {path: '/devices', component: Devices},

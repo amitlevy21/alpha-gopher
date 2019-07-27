@@ -6,6 +6,9 @@
     <router-link to="/filesystem">
       <span>File System</span>
     </router-link>
+    <router-link to="/finder">
+      <span>File Finder</span>
+    </router-link>
     <router-link to="/users">
       <span>User</span>
     </router-link>
