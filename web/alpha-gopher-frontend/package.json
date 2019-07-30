@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@innologica/vue-stackable-modal": "^0.1.8",
-    "bootstrap-vue": "^2.0.0-rc.26",
+    "bootstrap-vue": "^2.0.0-rc.27",
     "core-js": "^2.6.5",
     "v-datatable-light": "^0.8.0",
     "vue": "^2.6.10",
