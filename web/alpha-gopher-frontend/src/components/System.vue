@@ -1,7 +1,9 @@
 <template>
   <div>
     <h1>System Tools</h1>
-    <system-monitor id="htop" />
+    <div id="div-htop">
+      <system-monitor id="htop" />
+    </div>
   </div>
 </template>
 
@@ -16,7 +18,10 @@ export default {
 </script>
 
 <style scoped>
+#div-htop {
+  text-align: center;
+}
 #htop {
-  text-align: left;
+  display: inline-block
 }
 </style>
